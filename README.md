@@ -66,7 +66,7 @@ https://help.github.com/articles/creating-a-pull-request-from-a-fork/
 John is the repository owner and is currently responsible for handling these pull
 requests, so make sure to communicate with him when you send one.
 
-### Initializing Application
+<strike> ### Initializing Application
 
 1. If you don't already have it, download and install Node.js
 https://nodejs.org/en/
@@ -81,4 +81,64 @@ course of this project.
 `node app.js`
 
 4. Open a browser and navigate to http://localhost:3000 to access the web view of
-the application.
+the application.</strike>
+
+## 2/23/2019
+### Node Package Manager (npm)
+
+Node package manager helps us to install packages among different environments
+that will help us to accomplish various features, including database support and
+object relations. Some important points:
+
+* The project itself is in the GhoulAlert directory. npm commands will not work if
+you use them from the SoftwareEngineering directory.
+
+* Every time you pull from a remote repository or install new packages, run the following
+command:
+
+`npm install`
+
+This will install every dependency locally. This is important to do, as you will
+not receive the modules themselves from a pull.
+
+* To install a package to the project, use the command:
+
+`npm install [package]`
+
+If you find a package online, it will usually tell you what keyword you need to
+use in the place of [package] to install it, and any command line options you
+can use to modify the installation.
+
+* To install a package to your own machine (globally) instead of the project itself,
+use the same command but with the following option:
+
+`npm install [package] -g`
+
+You will usually only want to do this with special packages that generate or compile code, etc.
+
+### Run the Express Application
+
+1. In the command line/terminal, navigate to the SoftwareEngineering/GhoulAlert directory
+
+2. Run the application with one of the following commands:
+
+#### Standard, non-debug mode
+Has no debug console. Will not refresh the server on changes.
+
+`npm run start`
+
+#### Standard, debug mode
+Has debug console. Will not refresh the server on changes.
+
+`DEBUG=ghoulalert:* npm run start`
+
+#### Nodemon, non-debug mode
+Has no debug console. Uses the nodemon package to refresh the server on changes.
+
+`npm run devstart`
+
+#### Nodemon, debug mode
+Has debug console. Uses the nodemon package to refresh the server on changes.
+This is the most useful option for development.
+
+`DEBUG=ghoulalert:* npm run devstart`
