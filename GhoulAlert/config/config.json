@@ -1,22 +1,22 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "database_development",
+    "username": "ghoul",
+    "password": "ghoul_user!61",
+    "database": "ghoul_development",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "password",
-    "database": "database_test",
+    "username": "ghoul",
+    "password": "ghoul_user!61",
+    "database": "ghoul_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "database_production",
+    "database": "ghoul_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
