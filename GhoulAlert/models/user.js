@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   // Define the user model
   var User = sequelize.define('User', {
     // The user has a "username", of the string datatype
-    username: DataTypes.STRING,
+    username: { type: DataTypes.STRING, allowNull: false, unique: true },
 
     // The user has a "password", composed of a hash and salt
-    hash: DataTypes.STRING,
-    salt: DataTypes.STRING
+    hash: DataTypes.TEXT('long'),
+    salt: DataTypes.TEXT('long')
   })
 
   User.prototype.setPassword = function(password) {

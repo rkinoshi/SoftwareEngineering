@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 require('./config/passport');
+var apiV1IndexRouter = require('./routes/apiV1/index');
+var apiV1UsersRouter = require('./routes/apiV1/users');
 
 var app = express();
 
@@ -23,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/apiV1', apiV1IndexRouter);
+app.use('/apiV1/users', apiV1UsersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
