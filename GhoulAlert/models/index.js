@@ -31,6 +31,10 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+// Relationships go here
+db.User.hasMany(db.Marker);
+db.Marker.belongsTo(db.User);
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
