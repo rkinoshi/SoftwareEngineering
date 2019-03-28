@@ -2,6 +2,7 @@ var passport = require('passport');
 var router = require('express').Router();
 var auth = require('../authorize');
 var models  = require('../../models');
+const Sequelize = require('sequelize');
 
 var User = models.User;
 
@@ -30,7 +31,10 @@ router.post('/', auth.optional, (req, res, next) => {
   finalUser.setPassword(user.password);
 
   return finalUser.save()
-    .then(() => res.json(finalUser.toAuthJSON()));
+    .then(() => res.json(finalUser.toAuthJSON()))
+    .catch(Sequelize.ValidationError, function (error) {
+      res.json({ error: { message: error.message } });
+    });
 });
 
 //POST login route (optional, everyone has access)
@@ -65,7 +69,7 @@ router.post('/login', auth.optional, (req, res, next) => {
       return res.json(user.toAuthJSON());
     }
 
-    return status(400).info;
+    return res.status(400).info;
   })(req, res, next);
 });
 

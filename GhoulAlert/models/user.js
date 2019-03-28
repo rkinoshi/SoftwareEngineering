@@ -5,8 +5,15 @@ const jwt = require('jsonwebtoken');
 module.exports = (sequelize, DataTypes) => {
   // Define the user model
   var User = sequelize.define('User', {
-    // The user has a "username", of the string datatype
-    username: { type: DataTypes.STRING, allowNull: false, unique: true },
+    // The user has a "username", of the string datatype, that is unique
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+          args: true,
+          msg: "Username already exists; it must be unique."
+      }
+    },
 
     // The user has a "password", composed of a hash and salt
     hash: DataTypes.TEXT('long'),
