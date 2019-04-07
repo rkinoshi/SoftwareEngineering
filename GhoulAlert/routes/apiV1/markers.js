@@ -9,7 +9,9 @@ var Marker = models.Marker;
 
 //Get all markers
 router.get('/', auth.optional, (req, res, next) => {
-  return Marker.findAll().then((markers) => {
+  return Marker.findAll({
+    attributes: ['id', 'latitude', 'longitude', 'name', 'description', 'UserId']
+  }).then((markers) => {
     return res.json(markers);
   });
 });
