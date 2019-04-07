@@ -7,14 +7,13 @@ var localStrat = require('passport-local');
 var User = models.User;
 
 passport.use(new localStrat({
-  usernameField: 'user[username]',
-  passwordField: 'user[password]',
+  usernameField: 'username',
+  passwordField: 'password',
 }, (username, password, done) => {
-  User.findOne({ where: {title: 'aProject'} }).then((user) => {
+  User.findOne({ where: { username: username } }).then((user) => {
     if(!user || !user.validatePassword(password)) {
       return done(null, false, { errors: {'username or password': 'is invalid'}});
     }
-
     return done(null, user);
   }).catch(done);
 }));

@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 
 var User = models.User;
 
-//POST new user route (optional, everyone has access)
+//Creates a new user with a given username and password
 router.post('/', auth.optional, (req, res, next) => {
   var user = req.body;
 
@@ -37,7 +37,8 @@ router.post('/', auth.optional, (req, res, next) => {
     });
 });
 
-//POST login route (optional, everyone has access)
+//Creates a new token for an existing user if they provide the correct username
+//and password
 router.post('/login', auth.optional, (req, res, next) => {
   var user = req.body;
 
@@ -67,17 +68,19 @@ router.post('/login', auth.optional, (req, res, next) => {
       user.token = passportUser.generateJWT();
 
       return res.json(user.toAuthJSON());
+    } else {
+      return res.json(info);
     }
 
     return res.status(400).info;
   })(req, res, next);
 });
 
-//GET current route (required, only authenticated users have access)
+//Gets information on the current user if they have authentication
 router.get('/current', auth.required, (req, res, next) => {
-  var username = req.payload.username;
+  var id = req.payload.id;
 
-  return User.findOne({ where: {username: username} })
+  return User.findOne({ where: { id: id } })
     .then((user) => {
       if(!user) {
         return res.sendStatus(400);

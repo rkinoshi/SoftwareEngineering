@@ -5,6 +5,12 @@ const jwt = require('jsonwebtoken');
 module.exports = (sequelize, DataTypes) => {
   // Define the user model
   var User = sequelize.define('User', {
+    // The user has an id, which identifies them and acts as a primary key
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     // The user has a "username", of the string datatype, that is unique
     username: {
       type: DataTypes.STRING,
@@ -37,17 +43,24 @@ module.exports = (sequelize, DataTypes) => {
 
     return jwt.sign({
       username: this.username,
-      id: this._id,
+      id: this.id,
       exp: parseInt(expires.getTime() / 1000, 10),
     }, 'secret');
   }
 
   User.prototype.toAuthJSON = function() {
       return {
-        _id: this._id,
+        id: this.id,
         username: this.username,
         token: this.generateJWT()
       };
+  }
+
+  User.prototype.toJSON = function() {
+    return {
+      id: this.id,
+      username: this.username
+    }
   }
 
   return User;
