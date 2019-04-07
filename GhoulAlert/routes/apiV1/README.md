@@ -29,7 +29,7 @@ in the format **Token [token here]**.
 These are the registered users of our application. Users only need to register to
 create, edit, and delete markers; simply viewing markers is accessible to anyone.
 
-###$ Create User
+#### Create User
 
 `POST apiV1/users`
 
