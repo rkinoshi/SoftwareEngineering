@@ -47,8 +47,8 @@ to be used for authorization.
 }
 ```
 
-**username:** The user's username
-**password:** The password that this user will use to confirm their identity
+* **username:** The user's username
+* **password:** The password that this user will use to confirm their identity
 
 ##### Expected Response
 
@@ -60,9 +60,9 @@ to be used for authorization.
 }
 ```
 
-**id:** The ID number of the user as they are identified in the database
-**username:** The user's username
-**token:** The token that identifies the user in requests requiring authorization
+* **id:** The ID number of the user as they are identified in the database
+* **username:** The user's username
+* **token:** The token that identifies the user in requests requiring authorization
 
 ##### Constraints and Error Handling
 
@@ -87,8 +87,8 @@ username and password.
 }
 ```
 
-**username:** The user's username
-**password:** The password that this user will use to confirm their identity
+* **username:** The user's username
+* **password:** The password that this user will use to confirm their identity
 
 ##### Expected Response
 
@@ -100,9 +100,9 @@ username and password.
 }
 ```
 
-**id:** The ID number of the user as they are identified in the database
-**username:** The user's username
-**token:** The token that identifies the user in requests requiring authorization
+* **id:** The ID number of the user as they are identified in the database
+* **username:** The user's username
+* **token:** The token that identifies the user in requests requiring authorization
 
 ##### Constraints and Error Handling
 
@@ -132,9 +132,9 @@ No request body
 }
 ```
 
-**id:** The ID number of the user as they are identified in the database
-**username:** The user's username
-**token:** The token that identifies the user in requests requiring authorization
+* **id:** The ID number of the user as they are identified in the database
+* **username:** The user's username
+* **token:** The token that identifies the user in requests requiring authorization
 
 ##### Constraints and Error Handling
 
@@ -174,12 +174,12 @@ No request body
 ]
 ```
 
-**id:** The ID number of this marker as it is identified in the database
-**latitude:** The latitude value of the marker
-**longitude:** The longitude value of the marker
-**name:** The name for the marker
-**description:** A description for the marker
-**UserId:** The ID number of the user that created this marker
+* **id:** The ID number of this marker as it is identified in the database
+* **latitude:** The latitude value of the marker
+* **longitude:** The longitude value of the marker
+* **name:** The name for the marker
+* **description:** A description for the marker
+* **UserId:** The ID number of the user that created this marker
 
 ##### Constraints and Error Handling
 
@@ -216,14 +216,14 @@ No request body
 ]
 ```
 
-**id:** The ID number of this marker as it is identified in the database
-**latitude:** The latitude value of the marker
-**longitude:** The longitude value of the marker
-**name:** The name for the marker
-**description:** A description for the marker
-**User:** The user that owns this marker
-**User.id** The ID number of the user that created this marker
-**User.username** The username of the user that created this marker
+* **id:** The ID number of this marker as it is identified in the database
+* **latitude:** The latitude value of the marker
+* **longitude:** The longitude value of the marker
+* **name:** The name for the marker
+* **description:** A description for the marker
+* **User:** The user that owns this marker
+* **User.id** The ID number of the user that created this marker
+* **User.username** The username of the user that created this marker
 
 ##### Constraints and Error Handling
 
@@ -234,6 +234,7 @@ N/A
 `GET apiV1/markers/:id`
 
 **Where :id = ID of the marker**
+
 **Authorization: Optional**
 
 Obtains the data for one marker by its ID
@@ -255,12 +256,12 @@ No request body
 }
 ```
 
-**id:** The ID number of this marker as it is identified in the database
-**latitude:** The latitude value of the marker
-**longitude:** The longitude value of the marker
-**name:** The name for the marker
-**description:** A description for the marker
-**UserId** The ID number of the user that created this marker
+* **id:** The ID number of this marker as it is identified in the database
+* **latitude:** The latitude value of the marker
+* **longitude:** The longitude value of the marker
+* **name:** The name for the marker
+* **description:** A description for the marker
+* **UserId** The ID number of the user that created this marker
 
 ##### Constraints and Error Handling
 
@@ -269,7 +270,9 @@ No request body
 #### Get One Marker (And User Data)
 
 `GET apiV1/markers/:id/withuser`
+
 **Where :id = ID of the marker**
+
 **Authorization: Optional**
 
 Same as above, but includes user data such as their username
@@ -294,14 +297,14 @@ No request body
 }
 ```
 
-**id:** The ID number of this marker as it is identified in the database
-**latitude:** The latitude value of the marker
-**longitude:** The longitude value of the marker
-**name:** The name for the marker
-**description:** A description for the marker
-**User:** The user that owns this marker
-**User.id** The ID number of the user that created this marker
-**User.username** The username of the user that created this marker
+* **id:** The ID number of this marker as it is identified in the database
+* **latitude:** The latitude value of the marker
+* **longitude:** The longitude value of the marker
+* **name:** The name for the marker
+* **description:** A description for the marker
+* **User:** The user that owns this marker
+* **User.id** The ID number of the user that created this marker
+* **User.username** The username of the user that created this marker
 
 ##### Constraints and Error Handling
 
@@ -327,10 +330,10 @@ provided authorization token.
 }
 ```
 
-**latitude:** The latitude value of the marker
-**longitude:** The longitude value of the marker
-**name:** The name for the marker
-**description:** A description for the marker (optional)
+* **latitude:** The latitude value of the marker
+* **longitude:** The longitude value of the marker
+* **name:** The name for the marker
+* **description:** A description for the marker (optional)
 
 ##### Expected Response
 
@@ -351,15 +354,15 @@ provided authorization token.
   }
 }
 ```
-**success:** Whether or not creation succeeded
-**marker.id:** The ID number of this marker as it is identified in the database
-**marker.latitude:** The latitude value of the marker
-**marker.longitude:** The longitude value of the marker
-**marker.name:** The name for the marker
-**marker.description:** A description for the marker
-**marker.UserId** The ID number of the user that created this marker
-**marker.updatedAt** The date this object was last updated
-**marker.createdAt** The date this object was first created
+* **success:** Whether or not creation succeeded
+* **marker.id:** The ID number of this marker as it is identified in the database
+* **marker.latitude:** The latitude value of the marker
+* **marker.longitude:** The longitude value of the marker
+* **marker.name:** The name for the marker
+* **marker.description:** A description for the marker
+* **marker.UserId** The ID number of the user that created this marker
+* **marker.updatedAt** The date this object was last updated
+* **marker.createdAt** The date this object was first created
 
 ###### Failure Case
 
@@ -373,8 +376,8 @@ This occurs if the error is validation based
   }
 }
 ```
-**success:** Whether or not creation succeeded
-**error.message:** A description of the error that has occurred
+* **success:** Whether or not creation succeeded
+* **error.message:** A description of the error that has occurred
 
 ##### Constraints and Error Handling
 
@@ -388,6 +391,7 @@ This occurs if the error is validation based
 `PUT apiV1/markers/:id`
 
 **Where :id = ID of marker to edit**
+
 **Authorization: Required**
 
 Edits the marker with the provided ID, but only if the authorized user owns it.
@@ -405,10 +409,10 @@ The format is flexible; you only need to provide the properties that will be cha
 }
 ```
 
-**latitude:** The latitude value of the marker
-**longitude:** The longitude value of the marker
-**name:** The name for the marker
-**description:** A description for the marker
+* **latitude:** The latitude value of the marker
+* **longitude:** The longitude value of the marker
+* **name:** The name for the marker
+* **description:** A description for the marker
 
 ##### Expected Response
 
@@ -440,9 +444,9 @@ The format is flexible; you only need to provide the properties that will be cha
 }
 ```
 
-**success:** Whether or not editing succeeded
-**editedFrom:** The state of the marker before it was edited
-**editedTo:** The state of the marker after being edited
+* **success:** Whether or not editing succeeded
+* **editedFrom:** The state of the marker before it was edited
+* **editedTo:** The state of the marker after being edited
 
 ###### Failure Case
 
@@ -456,8 +460,8 @@ This occurs if the error is validation based
   }
 }
 ```
-**success:** Whether or not editing succeeded
-**error.message:** A description of the error that has occurred
+* **success:** Whether or not editing succeeded
+* **error.message:** A description of the error that has occurred
 
 ##### Constraints and Error Handling
 
@@ -472,6 +476,7 @@ This occurs if the error is validation based
 `DELETE apiV1/markers/:id`
 
 **Where :id = The ID of the marker to be deleted**
+
 **Authorization: Required**
 
 If the authorized user owns the specified marker, it will be deleted
@@ -500,16 +505,16 @@ No request body
 }
 ```
 
-**success:** Whether or not deletion succeeded
-**deleted:** The object that was deleted
-**deleted.id:** The ID number of this marker as it is identified in the database
-**deleted.latitude:** The latitude value of the marker
-**deleted.longitude:** The longitude value of the marker
-**deleted.name:** The name for the marker
-**deleted.description:** A description for the marker
-**deleted.UserId** The ID number of the user that created this marker
-**deleted.updatedAt** The date this object was last updated
-**deleted.createdAt** The date this object was first created
+* **success:** Whether or not deletion succeeded
+* **deleted:** The object that was deleted
+* **deleted.id:** The ID number of this marker as it is identified in the database
+* **deleted.latitude:** The latitude value of the marker
+* **deleted.longitude:** The longitude value of the marker
+* **deleted.name:** The name for the marker
+* **deleted.description:** A description for the marker
+* **deleted.UserId** The ID number of the user that created this marker
+* **deleted.updatedAt** The date this object was last updated
+* **deleted.createdAt** The date this object was first created
 
 ###### Failure Case
 
@@ -523,8 +528,8 @@ This occurs if the error is validation based
   }
 }
 ```
-**success:** Whether or not deletion succeeded
-**error.message:** A description of the error that has occurred
+* **success:** Whether or not deletion succeeded
+* **error.message:** A description of the error that has occurred
 
 ##### Constraints and Error Handling
 
