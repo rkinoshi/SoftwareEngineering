@@ -9,7 +9,7 @@ application responds with JSON-formatted data. In addition to allowing the appli
 to "speak" with itself, this also allows other applications to receive some of this
 application's data for their own use.
 
-## Authorization
+# Authorization
 
 Some routes will be marked with **Authorization: Required**. This means that a
 special token assigned to identify users is necessary in requests, or the application will
@@ -22,14 +22,14 @@ current user route. Tokens will be valid for 30 days from when they are created/
 This token should be attached to a header named **Authorization**,
 in the format **Token [token here]**.
 
-## Paths
+# Paths
 
-### Users
+## Users
 
 These are the registered users of our application. Users only need to register to
 create, edit, and delete markers; simply viewing markers is accessible to anyone.
 
-#### Create User
+### Create User
 
 `POST apiV1/users`
 
@@ -38,7 +38,7 @@ create, edit, and delete markers; simply viewing markers is accessible to anyone
 Makes a new user with the provided username and password, and responds with a token
 to be used for authorization.
 
-##### Expected Request Format
+#### Expected Request Format
 
 ```
 {
@@ -50,7 +50,7 @@ to be used for authorization.
 * **username:** The user's username
 * **password:** The password that this user will use to confirm their identity
 
-##### Expected Response
+#### Expected Response
 
 ```
 {
@@ -64,12 +64,12 @@ to be used for authorization.
 * **username:** The user's username
 * **token:** The token that identifies the user in requests requiring authorization
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with an error when username or password is not provided
 * Responds with a validation error if username is not unique (user with that username already exists)
 
-#### User Login
+### User Login
 
 `POST apiV1/users/login`
 
@@ -78,7 +78,7 @@ to be used for authorization.
 Refreshes and responds with a new identifying token for the user with the provided
 username and password.
 
-##### Expected Request Format
+#### Expected Request Format
 
 ```
 {
@@ -90,7 +90,7 @@ username and password.
 * **username:** The user's username
 * **password:** The password that this user will use to confirm their identity
 
-##### Expected Response
+#### Expected Response
 
 ```
 {
@@ -104,13 +104,13 @@ username and password.
 * **username:** The user's username
 * **token:** The token that identifies the user in requests requiring authorization
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with an error when username or password is not provided
 * Responds with an error if no user exists with given username
 * Responds with an error if the given password for the given user is wrong
 
-#### Current User
+### Current User
 
 `GET apiV1/users/current`
 
@@ -118,11 +118,11 @@ username and password.
 
 Responds with data for the current user based on the provided authentication token.
 
-##### Expected Request Format
+#### Expected Request Format
 
 No request body
 
-##### Expected Response
+#### Expected Response
 
 ```
 {
@@ -136,17 +136,17 @@ No request body
 * **username:** The user's username
 * **token:** The token that identifies the user in requests requiring authorization
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with an error if there is no authentication token
 * Responds with an error if the authentication token does not map to a user
 
-### Markers
+## Markers
 
 These represent points on the Google Map that users can set. The database stores relevant
 information in these objects and sends it to the map service to be processed onto the map.
 
-#### All Markers
+### All Markers
 
 `GET apiV1/markers`
 
@@ -154,11 +154,11 @@ information in these objects and sends it to the map service to be processed ont
 
 Responds with an array containing all stored markers.
 
-##### Expected Request Format
+#### Expected Request Format
 
 No request body
 
-##### Expected Response
+#### Expected Response
 
 ```
 [
@@ -181,11 +181,11 @@ No request body
 * **description:** A description for the marker
 * **UserId:** The ID number of the user that created this marker
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 N/A
 
-#### All Markers (And User Data)
+### All Markers (And User Data)
 
 `GET apiV1/markers/withusers`
 
@@ -193,11 +193,11 @@ N/A
 
 Similar to the above, but includes user data (primarily the username of the owner)
 
-##### Expected Request Format
+#### Expected Request Format
 
 No request body
 
-##### Expected Response
+#### Expected Response
 
 ```
 [
@@ -225,11 +225,11 @@ No request body
 * **User.id** The ID number of the user that created this marker
 * **User.username** The username of the user that created this marker
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 N/A
 
-#### Get One Marker
+### Get One Marker
 
 `GET apiV1/markers/:id`
 
@@ -239,11 +239,11 @@ N/A
 
 Obtains the data for one marker by its ID
 
-##### Expected Request Format
+#### Expected Request Format
 
 No request body
 
-##### Expected Response
+#### Expected Response
 
 ```
 {
@@ -263,11 +263,11 @@ No request body
 * **description:** A description for the marker
 * **UserId** The ID number of the user that created this marker
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with a 404 error if there is no marker with the given id
 
-#### Get One Marker (And User Data)
+### Get One Marker (And User Data)
 
 `GET apiV1/markers/:id/withuser`
 
@@ -277,11 +277,11 @@ No request body
 
 Same as above, but includes user data such as their username
 
-##### Expected Request Format
+#### Expected Request Format
 
 No request body
 
-##### Expected Response
+#### Expected Response
 
 ```
 {
@@ -306,11 +306,11 @@ No request body
 * **User.id** The ID number of the user that created this marker
 * **User.username** The username of the user that created this marker
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with a 404 error if there is no marker with the given id
 
-#### Create a Marker
+### Create a Marker
 
 `POST apiV1/markers`
 
@@ -319,7 +319,7 @@ No request body
 Creates a new marker with the given parameters, owned by the user that owns the
 provided authorization token.
 
-##### Expected Request Format
+#### Expected Request Format
 
 ```
 {
@@ -335,9 +335,9 @@ provided authorization token.
 * **name:** The name for the marker
 * **description:** A description for the marker (optional)
 
-##### Expected Response
+#### Expected Response
 
-###### Success Case
+##### Success Case
 
 ```
 {
@@ -364,7 +364,7 @@ provided authorization token.
 * **marker.updatedAt** The date this object was last updated
 * **marker.createdAt** The date this object was first created
 
-###### Failure Case
+##### Failure Case
 
 This occurs if the error is validation based
 
@@ -379,14 +379,14 @@ This occurs if the error is validation based
 * **success:** Whether or not creation succeeded
 * **error.message:** A description of the error that has occurred
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with an error if marker latitude, longitude, or name are not provided
 * Responds with an error if there is no authorization token
 * Responds with an error if the authorization token does not match a user
 * Responds with an error if the name of the marker is not unique
 
-#### Edit a Marker
+### Edit a Marker
 
 `PUT apiV1/markers/:id`
 
@@ -396,7 +396,7 @@ This occurs if the error is validation based
 
 Edits the marker with the provided ID, but only if the authorized user owns it.
 
-##### Expected Request Format
+#### Expected Request Format
 
 The format is flexible; you only need to provide the properties that will be changed.
 
@@ -414,9 +414,9 @@ The format is flexible; you only need to provide the properties that will be cha
 * **name:** The name for the marker
 * **description:** A description for the marker
 
-##### Expected Response
+#### Expected Response
 
-###### Success Case
+##### Success Case
 
 ```
 {
@@ -448,7 +448,7 @@ The format is flexible; you only need to provide the properties that will be cha
 * **editedFrom:** The state of the marker before it was edited
 * **editedTo:** The state of the marker after being edited
 
-###### Failure Case
+##### Failure Case
 
 This occurs if the error is validation based
 
@@ -463,7 +463,7 @@ This occurs if the error is validation based
 * **success:** Whether or not editing succeeded
 * **error.message:** A description of the error that has occurred
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with an error if there is no authentication token
 * Responds with an error if the authentication token does not match to a user
@@ -471,7 +471,7 @@ This occurs if the error is validation based
 * Responds with an error if the user does not own the marker
 * Responds with an error if the name is edited to one that already exists in the database
 
-#### Delete a Marker
+### Delete a Marker
 
 `DELETE apiV1/markers/:id`
 
@@ -481,13 +481,13 @@ This occurs if the error is validation based
 
 If the authorized user owns the specified marker, it will be deleted
 
-##### Expected Request Format
+#### Expected Request Format
 
 No request body
 
-##### Expected Response
+#### Expected Response
 
-###### Success Case
+##### Success Case
 
 ```
 {
@@ -516,7 +516,7 @@ No request body
 * **deleted.updatedAt** The date this object was last updated
 * **deleted.createdAt** The date this object was first created
 
-###### Failure Case
+##### Failure Case
 
 This occurs if the error is validation based
 
@@ -531,7 +531,7 @@ This occurs if the error is validation based
 * **success:** Whether or not deletion succeeded
 * **error.message:** A description of the error that has occurred
 
-##### Constraints and Error Handling
+#### Constraints and Error Handling
 
 * Responds with an error if there is no authentication token
 * Responds with an error if the authentication token does not match to a user
